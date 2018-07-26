@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+			  <style type="text/css">
+			  	.cd{
+			  		min-width: 400px;
+			  		height: 200px;
+			  		border: 3px ridge green;
+			  		border-radius: 10px;
+			  		padding: 5px;
+			  	}
+			  </style>
+</head>
+<body>
+<div id='imgs1' style="display: none;">word1,,word2,,word3,,word4</div>
+<div id='dispimgs1'></div><br><br>
+<div id='dispimgs2'></div>
+<script type="text/javascript">
+	var word = $('#imgs1').html().split(',,');
+	var text = []
+	var text1 = []
+	for(i=0;i<word.length;i++){
+		text.push('<a id="pop'+i+'" class="ab">'+word[i]+'</a> ')
+		text1.push('<span id="poop'+i+'" class="cd">Hello</span>')
+	}
+	$('#dispimgs1').html(text)
+	$('#dispimgs2').html(text1)
+	$(function () {
+    var parent = $("#dispimgs1");
+    var divs = parent.children();
+    while (divs.length) {
+        parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]).append('\xa0');
+    }
+});
+	var count = 0;
+	$('.ab').click(function(){
+		var id = this.id;
+		var idd = id.replace('pop', '');
+		var idd2 = $(this).html()
+		$('.cd').click(function(){
+			var id1 = this.id;
+			var idd1 = id1.replace('poop', '');
+			if(idd == idd1){
+				$(this).html(idd2)
+				$('#pop'+idd).css('display', 'none')
+				count++;
+				if(count == word.length){
+					alert('Excellent')
+				}
+			}
+
+		});
+	})
+</script>
+</body>
+</html>
